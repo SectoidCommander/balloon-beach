@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         rigidBody.velocity = Vector3.forward * playerSpeed * Time.deltaTime;
         // mobile controls
 
-        Vector2 touch = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0.0f, 0, 10.0f));
+        Vector2 touch = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0.0f, 0.0f, 10.0f));
         if (Input.touchCount > 0)
         {
             transform.position = new Vector3(touch.x, transform.position.y, transform.position.z);
