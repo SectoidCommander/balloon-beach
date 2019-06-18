@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float playerSpeed = 200;
+    public float playerSpeed = 1500;
     public float directionalSpeed = 10;
 
     public bool canMoveHorizontal = true;
