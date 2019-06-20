@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjecSpawner : MonoBehaviour
 {
+	public bool isOn = true;
     public GameObject player;
 	public GameObject[] trianglePrefabs; // selection of obstacles that can be spawned
 	private Vector3 spawnObstaclePosition;
@@ -12,7 +13,7 @@ public class ObjecSpawner : MonoBehaviour
     void Update()
     {
         float distanceToHorizon = Vector3.Distance(player.gameObject.transform.position, spawnObstaclePosition);
-		if(distanceToHorizon < 120)
+		if(distanceToHorizon < 120 && isOn)
 		{
 			SpawnTriangles();
 		}
