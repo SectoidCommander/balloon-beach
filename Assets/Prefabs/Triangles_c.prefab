@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405030914441285688}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.235, z: 0}
+  m_LocalPosition: {x: -2, y: 0.242, z: 0}
   m_LocalScale: {x: 1.5353, y: 1.5353, z: 1.5353}
   m_Children: []
   m_Father: {fileID: 3984799834924832449}
@@ -55,8 +55,7 @@ GameObject:
   - component: {fileID: 4220793681795154561}
   - component: {fileID: 1411500979939728331}
   - component: {fileID: 969500658321119635}
-  - component: {fileID: 7658902563943899084}
-  - component: {fileID: 734659823742237091}
+  - component: {fileID: 4861490604843272880}
   m_Layer: 0
   m_Name: Triangle (1)
   m_TagString: triangle
@@ -72,7 +71,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370544084383272245}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2, y: 1.235, z: 0}
+  m_LocalPosition: {x: 2, y: 0.242, z: 0}
   m_LocalScale: {x: 100, y: 100.00006, z: 100.00006}
   m_Children: []
   m_Father: {fileID: 3984799834924832449}
@@ -123,34 +122,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7658902563943899084
-MeshCollider:
+--- !u!65 &4861490604843272880
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370544084383272245}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 5f0c25406343c9447ac557b3574f58e5, type: 3}
---- !u!64 &734659823742237091
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370544084383272245}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 5f0c25406343c9447ac557b3574f58e5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.020000005, z: 0.015000003}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4026975772963669463
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,8 +146,7 @@ GameObject:
   - component: {fileID: 7193787613301094877}
   - component: {fileID: 8260553103744562934}
   - component: {fileID: 6688174644504089969}
-  - component: {fileID: 3472370103367843968}
-  - component: {fileID: 9129601876167640435}
+  - component: {fileID: 8060479868714924916}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: triangle
@@ -179,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4026975772963669463}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.235, z: 0}
+  m_LocalPosition: {x: 0, y: 0.242, z: 0}
   m_LocalScale: {x: 100, y: 100.00006, z: 100.00006}
   m_Children: []
   m_Father: {fileID: 3984799834924832449}
@@ -230,34 +213,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3472370103367843968
-MeshCollider:
+--- !u!65 &8060479868714924916
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4026975772963669463}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 5f0c25406343c9447ac557b3574f58e5, type: 3}
---- !u!64 &9129601876167640435
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4026975772963669463}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 5f0c25406343c9447ac557b3574f58e5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.020000005, z: 0.015000003}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7496049949562599381
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3984799834924832449}
+  - component: {fileID: 707629983667133394}
   m_Layer: 0
   m_Name: Triangles_c
   m_TagString: Untagged
@@ -291,3 +260,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &707629983667133394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7496049949562599381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e6b4497c18f4a428a826ded2ff0130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

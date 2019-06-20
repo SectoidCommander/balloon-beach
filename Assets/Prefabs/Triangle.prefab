@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 519086805553479940}
   - component: {fileID: 354552099207910074}
   - component: {fileID: 5868136773421164486}
-  - component: {fileID: 5578343259325348978}
+  - component: {fileID: 4784307277376490347}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: triangle
@@ -78,17 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5578343259325348978
-MeshCollider:
+--- !u!65 &4784307277376490347
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2811917088000468443}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 5f0c25406343c9447ac557b3574f58e5, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.020000005, z: 0.015000003}
+  m_Center: {x: 0, y: 0, z: 0}
