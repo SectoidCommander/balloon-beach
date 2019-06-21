@@ -6,12 +6,26 @@ using TMPro;
 public class Score : MonoBehaviour
 {
 	public int score;
+    public int highScore;
+    public TextMeshProUGUI highScoreUI;
 	public TextMeshProUGUI scoreUI;
-	
+
+    private void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+        highScore = PlayerPrefs.GetInt("highscore");
+    }
+
     // Update is called once per frame
     void Update()
     {
 		scoreUI.text = score.ToString();
+        highScoreUI.text = highScore.ToString();
+        if(score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("highscore", score);
+        }
     }
 	
 	void OnTriggerEnter(Collider other)

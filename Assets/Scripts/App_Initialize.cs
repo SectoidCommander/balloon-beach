@@ -70,13 +70,13 @@ public class App_Initialize : MonoBehaviour
 
     public void GameOver()
     {
-        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        player.GetComponent<Player>().SetFrozen(true);
         mainCamera.GetComponent<CameraFollow>().FreezeCamera(true);
         hasGameStarted = false;
         inMenuUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(true);
-        player.gameObject.SetActive(false);
+        //player.gameObject.SetActive(false);
     }
 
     public void RestartGame()

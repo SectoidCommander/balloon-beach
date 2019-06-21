@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float touchSpeed = 10;
     public bool teleportSideMovement = false;
     public bool isFrozen;
+    public bool isInGodMode = false;
     public AudioClip scoreUp;
     public AudioClip damage;
 
@@ -104,10 +105,10 @@ public class Player : MonoBehaviour
         {
             GetComponent<AudioSource>().PlayOneShot(scoreUp, 1.0f);
         }
-        if (other.gameObject.tag == "triangle")
+        if (other.gameObject.tag == "triangle" && !isInGodMode)
         {
             GetComponent<AudioSource>().PlayOneShot(damage, 1.0f);
-            //sceneManager.GetComponent<App_Initialize>().GameOver();
+            sceneManager.GetComponent<App_Initialize>().GameOver();
         }
     }
 
