@@ -95,6 +95,11 @@ public class App_Initialize : MonoBehaviour
         StartCoroutine(StartGame(1.0f));
     }
 
+    public bool IsGamePaused()
+    {
+        return gameIsPaused;
+    }
+
     // Update is called once per frame
     void Update()
     {
