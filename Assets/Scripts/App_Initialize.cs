@@ -11,6 +11,7 @@ public class App_Initialize : MonoBehaviour
     public GameObject player;
     public GameObject mainCamera;
     private bool hasGameStarted = false;
+    private bool gameIsPaused = false;
 
     void Awake()
 	{
@@ -45,6 +46,7 @@ public class App_Initialize : MonoBehaviour
 
     public void PauseGame()
     {
+        gameIsPaused = true;
         player.GetComponent<Player>().SetFrozen(true);
 
         mainCamera.GetComponent<CameraFollow>().FreezeCamera(true);
@@ -57,15 +59,18 @@ public class App_Initialize : MonoBehaviour
 
     IEnumerator StartGame(float waitTime)
     {
+        gameIsPaused = false;
         inMenuUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(true);
         gameOverUI.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
         
         yield return new WaitForSeconds(waitTime);
-
-        mainCamera.GetComponent<CameraFollow>().FreezeCamera(false);
-        player.GetComponent<Player>().SetFrozen(false);
+        if (!gameIsPaused)
+        {
+            mainCamera.GetComponent<CameraFollow>().FreezeCamera(false);
+            player.GetComponent<Player>().SetFrozen(false);
+        }
     }
 
     public void GameOver()
