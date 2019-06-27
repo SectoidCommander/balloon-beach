@@ -2423,12 +2423,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 2121118628}
   playerSpeed: 5.5
-  rotationFactor: 4
-  touchSpeed: 5
+  rotationFactor: 3.5
+  touchSpeed: 10
   teleportSideMovement: 0
   isFrozen: 0
   isInGodMode: 0
-  scoreUp: {fileID: 8300000, guid: 37be302a429e7234691fbcb463f208e7, type: 3}
+  scoreUp: {fileID: 8300000, guid: 5dac7d72eb60cfd4ab0cc5b0999e88e3, type: 3}
   damage: {fileID: 8300000, guid: 9f310fbe7e88a9a48a1fcc33b2e70324, type: 3}
   canMoveHorizontal: 0
   canMoveVertical: 0
@@ -2455,10 +2455,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051454083}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9f2745c437f39e246a4e114c951baab6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c5c6eb797ec24eb489b19601aacf6eee, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
