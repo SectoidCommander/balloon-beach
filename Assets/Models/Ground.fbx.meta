@@ -18,7 +18,22 @@ ModelImporter:
     3300002: Water
     4300000: Water
     4300002: Ground
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass_Mat
+    second: {fileID: 2100000, guid: 3fbfc40f374ae5a4fb0c8b1a8634c275, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sand_Mat
+    second: {fileID: 2100000, guid: ea8e9920e6e6bea44ac96ed3ea6e9a9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Water_Mat
+    second: {fileID: 2100000, guid: 299a174fa0da23144bd3b06a2b6028de, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
