@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
+using UnityEngine.UI;
 
 public class App_Initialize : MonoBehaviour
 {
     public GameObject inMenuUI;
     public GameObject inGameUI;
     public GameObject gameOverUI;
+    public GameObject adButton;
+    public GameObject restartButton;
+
     public GameObject player;
     public GameObject mainCamera;
     private bool hasGameStarted = false;
     private bool gameIsPaused = false;
+    private bool hasSeenRewardedAd = false;
 
     void Awake()
 	{
@@ -81,7 +87,14 @@ public class App_Initialize : MonoBehaviour
         inMenuUI.gameObject.SetActive(false);
         inGameUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(true);
-        //player.gameObject.SetActive(false);
+
+        if (hasSeenRewardedAd)
+        {
+            adButton.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            adButton.GetComponent<Button>().enabled = false;
+            adButton.GetComponent<Animator>().enabled = false;
+            restartButton.GetComponent<Animator>().enabled = true;
+        }
     }
 
     public void RestartGame()
@@ -91,8 +104,29 @@ public class App_Initialize : MonoBehaviour
 
     public void ShowAd()
     {
-        // #FIX LATER
-        StartCoroutine(StartGame(1.0f));
+        if (Advertisement.IsReady("rewardedVideo"))
+        {
+            var options = new ShowOptions { resultCallback = HandleShowResult };
+            Advertisement.Show("rewardedVideo", options);
+        }
+    }
+
+    private void HandleShowResult(ShowResult result)
+    {
+        switch (result)
+        {
+             case ShowResult.Finished:
+                hasSeenRewardedAd = true;
+                StartCoroutine(StartGame(1.5f));
+                Debug.Log("The ad was successfully shown");
+                break;
+             case ShowResult.Skipped:
+                Debug.Log("The ad was skipped before reaching the end");
+                break;
+             case ShowResult.Failed:
+                Debug.LogError("The ad failed to be shown");
+                break;
+        }
     }
 
     public bool IsGamePaused()

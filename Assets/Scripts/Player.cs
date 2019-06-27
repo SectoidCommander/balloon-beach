@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public GameObject sceneManager;
     public float playerSpeed = 4;
+    public float rotationFactor = 3.5f;
     public float touchSpeed = 10;
     public bool teleportSideMovement = false;
     public bool isFrozen;
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour
 
             //rigidBody.velocity = Vector3.forward * playerSpeed * Time.deltaTime;
             // mobile controls
+
+            transform.Rotate(Vector3.right * playerSpeed * rotationFactor);
 
             currentPosition = transform.position;
             targetPosition = currentPosition + Vector3.forward * playerSpeed;
