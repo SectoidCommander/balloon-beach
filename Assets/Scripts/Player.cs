@@ -22,17 +22,58 @@ public class Player : MonoBehaviour
     private Vector3 targetPosition = Vector3.zero;
     private Vector3 nextPosition = Vector3.zero;
 
+    private bool isSmashing = false;
+    private float smashTimer = 0.0f;
+    public float smashTimeLimit = 0.5f;
+    private float originalPlayerSpeed = 0.0f;
+
+    private MeshRenderer meshRenderer;
+    public Material[] smashMaterials;
+    public Material[] originalMaterials;
+    private Vector3 originalScale;
+    public float smashScaling = 1.3f;
+
     private Rigidbody rigidBody = null;
 
     // Start is called before the first frame update
-    void Start()
+    void Start() 
     {
         rigidBody = GetComponent<Rigidbody>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        originalMaterials = meshRenderer.materials;
+        originalScale = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && !isSmashing)
+        {
+            isSmashing = true;
+            smashTimer = 0.0f;
+            originalPlayerSpeed = playerSpeed;
+            playerSpeed *= 2;
+        }
+
+        if (isSmashing)
+        {
+            if(smashTimer <= smashTimeLimit)
+            {
+                smashTimer += Time.deltaTime;
+                meshRenderer.materials = smashMaterials;
+                transform.localScale = originalScale * smashScaling;
+            }
+            else
+            {
+                // wind down
+                isSmashing = false;
+                smashTimer = 0.0f;
+                playerSpeed = originalPlayerSpeed;
+                meshRenderer.materials = originalMaterials;
+                transform.localScale = originalScale;
+            }
+        }
+
         if (!isFrozen)
         {
 
