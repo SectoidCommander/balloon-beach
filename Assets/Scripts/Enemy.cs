@@ -8,6 +8,6 @@ public class Enemy : MonoBehaviour
     
     public void Kill()
     {
-        Destroy(this);
+        //#Method stub
     }
 }

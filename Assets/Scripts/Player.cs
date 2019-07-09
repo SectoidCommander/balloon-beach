@@ -23,9 +23,12 @@ public class Player : MonoBehaviour
     private Vector3 targetPosition = Vector3.zero;
     private Vector3 nextPosition = Vector3.zero;
 
-    private bool isSmashing = false;
+    public bool isSmashing = false;
+    private bool isRecharging = false;
+    private float smashRecharge = 0.0f;
+    [Range(0.0f, 10.0f)]private float smashRechargeTimelimit = 0.5f;
     private float smashTimer = 0.0f;
-    public float smashTimeLimit = 0.5f;
+    public float smashTimeLimit = 0.7f; // the length of smash mode in seconds
     private float originalPlayerSpeed = 0.0f;
 
     private MeshRenderer meshRenderer;
@@ -54,24 +57,37 @@ public class Player : MonoBehaviour
     {
         
 
-        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !cameraFollow.IsCatchingUp())
+        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !isRecharging)
         {
             isSmashing = true;
+            isRecharging = true;
             cameraFollow.InitiateCatchup();
             smashTimer = 0.0f;
             originalPlayerSpeed = playerSpeed;
             playerSpeed *= smashSpeedFactor;
+        }
 
+        if (isRecharging)
+        {
+            if(smashRecharge >= smashRechargeTimelimit)
+            {
+                smashRecharge = 0.0f;
+                isRecharging = false;
+            }
+            else {
+                smashRecharge += Time.deltaTime;
+            }
         }
 
         if (isSmashing)
         {
+
             if(smashTimer <= smashTimeLimit)
             {
                 smashTimer += Time.deltaTime;
                 meshRenderer.materials = smashMaterials;
                 transform.localScale = originalScale * smashScaling;
-                
+
                 //cameraFollow.ProportionalSpeed(0.7f);
                 //cameraFollow.speed = this.playerSpeed;
             }
@@ -131,7 +147,7 @@ public class Player : MonoBehaviour
             targetPosition = currentPosition + Vector3.forward * playerSpeed;
 
             Vector2 touch = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0.0f, 0.0f, 10.0f));
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && !isSmashing)
             {
                 targetPosition.x = touch.x;
             }
@@ -174,7 +190,7 @@ public class Player : MonoBehaviour
             if (isSmashing)
             {
                 GetComponent<AudioSource>().PlayOneShot(hitEnemy, 1.0f);
-                other.gameObject.GetComponent<Enemy>().Kill();
+                Destroy(other.gameObject);
 
             }
             else
