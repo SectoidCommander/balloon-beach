@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public bool isInGodMode = false;
     public AudioClip scoreUp;
     public AudioClip damage;
+    public AudioClip hitEnemy;
 
     public bool canMoveHorizontal = true;
     public bool canMoveVertical = false;
@@ -172,7 +173,9 @@ public class Player : MonoBehaviour
             // he's in smash attack mode
             if (isSmashing)
             {
-                Destroy(other.gameObject);
+                GetComponent<AudioSource>().PlayOneShot(hitEnemy, 1.0f);
+                other.gameObject.GetComponent<Enemy>().Kill();
+
             }
             else
             {
