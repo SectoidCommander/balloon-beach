@@ -31,9 +31,12 @@ public class Player : MonoBehaviour
     public Material[] smashMaterials;
     public Material[] originalMaterials;
     private Vector3 originalScale;
-    public float smashScaling = 1.3f;
+    public float smashScaling = 1.2f;
+    public float smasSpeedFactor = 2.0f;
 
     private Rigidbody rigidBody = null;
+
+    public CameraFollow cameraFollow;
 
     // Start is called before the first frame update
     void Start() 
@@ -42,17 +45,22 @@ public class Player : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         originalMaterials = meshRenderer.materials;
         originalScale = transform.localScale;
+        cameraFollow.speed = playerSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isSmashing)
+        
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isSmashing && !cameraFollow.IsCatchingUp())
         {
             isSmashing = true;
+            cameraFollow.InitiateCatchup();
             smashTimer = 0.0f;
             originalPlayerSpeed = playerSpeed;
-            playerSpeed *= 2;
+            playerSpeed *= smasSpeedFactor;
+
         }
 
         if (isSmashing)
@@ -62,6 +70,9 @@ public class Player : MonoBehaviour
                 smashTimer += Time.deltaTime;
                 meshRenderer.materials = smashMaterials;
                 transform.localScale = originalScale * smashScaling;
+                
+                //cameraFollow.ProportionalSpeed(0.7f);
+                //cameraFollow.speed = this.playerSpeed;
             }
             else
             {
@@ -71,6 +82,7 @@ public class Player : MonoBehaviour
                 playerSpeed = originalPlayerSpeed;
                 meshRenderer.materials = originalMaterials;
                 transform.localScale = originalScale;
+                //cameraFollow.ResetSpeed();
             }
         }
 
