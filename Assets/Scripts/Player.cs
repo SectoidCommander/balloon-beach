@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isSmashing && !cameraFollow.IsCatchingUp())
+        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !cameraFollow.IsCatchingUp())
         {
             isSmashing = true;
             cameraFollow.InitiateCatchup();
@@ -165,6 +165,20 @@ public class Player : MonoBehaviour
         {
             GetComponent<AudioSource>().PlayOneShot(damage, 1.0f);
             sceneManager.GetComponent<App_Initialize>().GameOver();
+        }
+        if (other.gameObject.tag == "enemy" && !isInGodMode)
+        {
+            // if we collide into an enemy, the player dies unless
+            // he's in smash attack mode
+            if (isSmashing)
+            {
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(damage, 1.0f);
+                sceneManager.GetComponent<App_Initialize>().GameOver();
+            }
         }
     }
 
