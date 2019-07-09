@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public Material[] originalMaterials;
     private Vector3 originalScale;
     public float smashScaling = 1.2f;
-    public float smasSpeedFactor = 2.0f;
+    public float smashSpeedFactor = 2.0f;
 
     private Rigidbody rigidBody = null;
 
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
             cameraFollow.InitiateCatchup();
             smashTimer = 0.0f;
             originalPlayerSpeed = playerSpeed;
-            playerSpeed *= smasSpeedFactor;
+            playerSpeed *= smashSpeedFactor;
 
         }
 
