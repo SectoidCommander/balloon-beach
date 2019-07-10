@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private float smashTimer = 0.0f;
     public float smashTimeLimit = 0.7f; // the length of smash mode in seconds
     private float originalPlayerSpeed = 0.0f;
+    private bool doubleTapping = false;
+    private int doubleTapFrameCount = 0; // counts the number of consequtive frames in which a double-tap has been registered
 
     private MeshRenderer meshRenderer;
     public Material[] smashMaterials;
@@ -52,13 +54,63 @@ public class Player : MonoBehaviour
         cameraFollow.speed = playerSpeed;
     }
 
+    private Rect windowRect = new Rect(20, 20, 500, 100);
+    private string debugMessage = "";
+
+    /*
+    void OnGUI()
+    {
+        windowRect = GUI.Window(0, windowRect, WindowFunction, "My Window");
+    }
+
+    void WindowFunction(int windowID)
+    {
+        GUI.skin.label.fontSize = 25;
+        GUI.Label(new Rect(25, 25, 500, 100), debugMessage);
+    }
+    */
+    void DebugMessage(string message)
+    {
+        debugMessage = message;
+    }
+
     // Update is called once per frame
     void Update()
     {
+
         
 
-        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !isRecharging)
+        int touchCount = Input.touchCount;
+        
+        string touchMessage = "";
+        int tapCount = 0;
+
+        if(touchCount > 0)
         {
+            for (int x = 0; x < touchCount; x++)
+            {
+                tapCount = Input.GetTouch(x).tapCount;
+                touchMessage = touchMessage + "Touch (" + x + "): " + tapCount ;
+                if (Input.GetTouch(x).tapCount >= 2)
+                {
+                    doubleTapping = true;
+                    doubleTapFrameCount++;
+                    touchMessage = touchMessage + " DOUBLE FRAMECOUNT: " + doubleTapFrameCount;
+                }
+                touchMessage = touchMessage + "\n";
+            }   
+        }
+        else
+        {
+            touchMessage = "";
+            doubleTapping = false;
+            doubleTapFrameCount = 0;
+        }
+        DebugMessage(touchMessage);
+
+        if ( (doubleTapping && doubleTapFrameCount == 1) && !isSmashing && !isRecharging)
+        {
+            doubleTapping = false;
             isSmashing = true;
             isRecharging = true;
             cameraFollow.InitiateCatchup();
