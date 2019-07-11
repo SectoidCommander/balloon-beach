@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public AudioClip scoreUp;
     public AudioClip damage;
     public AudioClip hitEnemy;
+    public AudioClip speedUp;
 
     public bool canMoveHorizontal = true;
     public bool canMoveVertical = false;
@@ -57,7 +58,6 @@ public class Player : MonoBehaviour
     private Rect windowRect = new Rect(20, 20, 500, 100);
     private string debugMessage = "";
 
-    /*
     void OnGUI()
     {
         windowRect = GUI.Window(0, windowRect, WindowFunction, "My Window");
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         GUI.skin.label.fontSize = 25;
         GUI.Label(new Rect(25, 25, 500, 100), debugMessage);
     }
-    */
+    
     void DebugMessage(string message)
     {
         debugMessage = message;
@@ -77,8 +77,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
 
         int touchCount = Input.touchCount;
         
@@ -106,7 +104,8 @@ public class Player : MonoBehaviour
             doubleTapping = false;
             doubleTapFrameCount = 0;
         }
-        DebugMessage(touchMessage);
+        string speedMessage = "Player Speed: " + this.playerSpeed + "\n";
+        DebugMessage(speedMessage + touchMessage);
 
         if ( (doubleTapping && doubleTapFrameCount == 1) && !isSmashing && !isRecharging)
         {
@@ -229,6 +228,7 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "scoreup")
         {
             GetComponent<AudioSource>().PlayOneShot(scoreUp, 1.0f);
+            this.GetComponent<Score>().ScoreUp(1);
         }
         if (other.gameObject.tag == "triangle" && !isInGodMode)
         {
@@ -252,9 +252,22 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+     
     public void SetFrozen(bool isFrozen)
     {
         this.isFrozen = isFrozen;
+    }
+
+    public void SpeedUp(float speedUpAmount)
+    {
+        this.playerSpeed += speedUpAmount;
+        this.cameraFollow.speed += speedUpAmount;
+        this.GetComponent<AudioSource>().PlayOneShot(speedUp);
+    }
+
+    public void SpeeDown(float speedDownAmount)
+    {
+        this.playerSpeed -= speedDownAmount;
+        this.cameraFollow.speed -= speedDownAmount;
     }
 }
