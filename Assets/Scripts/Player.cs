@@ -105,7 +105,8 @@ public class Player : MonoBehaviour
             doubleTapFrameCount = 0;
         }
         string speedMessage = "Player Speed: " + this.playerSpeed + "\n";
-        DebugMessage(speedMessage + touchMessage);
+        string originalSpeedMessage = "Original Speed: " + this.originalPlayerSpeed + "\n";
+        DebugMessage(speedMessage + originalSpeedMessage + touchMessage);
 
         if ( (doubleTapping && doubleTapFrameCount == 1) && !isSmashing && !isRecharging)
         {
@@ -132,7 +133,6 @@ public class Player : MonoBehaviour
 
         if (isSmashing)
         {
-
             if(smashTimer <= smashTimeLimit)
             {
                 smashTimer += Time.deltaTime;
@@ -261,6 +261,10 @@ public class Player : MonoBehaviour
     public void SpeedUp(float speedUpAmount)
     {
         this.playerSpeed += speedUpAmount;
+        if (isSmashing)
+        {
+            this.originalPlayerSpeed += speedUpAmount;
+        }
         this.cameraFollow.speed += speedUpAmount;
         this.GetComponent<AudioSource>().PlayOneShot(speedUp);
     }
