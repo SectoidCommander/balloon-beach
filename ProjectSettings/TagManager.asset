@@ -6,6 +6,7 @@ TagManager:
   tags:
   - triangle
   - scoreup
+  - enemy
   layers:
   - Default
   - TransparentFX
