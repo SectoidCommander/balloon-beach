@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
     private float smashTimer = 0.0f;
     public float smashTimeLimit = 0.7f; // the length of smash mode in seconds
     private float originalPlayerSpeed = 0.0f;
-    private bool doubleTapping = false;
-    private int doubleTapFrameCount = 0; // counts the number of consequtive frames in which a double-tap has been registered
 
     private MeshRenderer meshRenderer;
     public Material[] smashMaterials;
@@ -55,6 +53,7 @@ public class Player : MonoBehaviour
         cameraFollow.speed = playerSpeed;
     }
 
+<<<<<<< HEAD
     private Rect windowRect = new Rect(20, 20, 500, 100);
     private string debugMessage = "";
 
@@ -107,10 +106,15 @@ public class Player : MonoBehaviour
         string speedMessage = "Player Speed: " + this.playerSpeed + "\n";
         string originalSpeedMessage = "Original Speed: " + this.originalPlayerSpeed + "\n";
         DebugMessage(speedMessage + originalSpeedMessage + touchMessage);
+=======
+    // Update is called once per frame
+    void Update()
+    {
+        
+>>>>>>> parent of f82ff5e... Fixed tap spam
 
-        if ( (doubleTapping && doubleTapFrameCount == 1) && !isSmashing && !isRecharging)
+        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !isRecharging)
         {
-            doubleTapping = false;
             isSmashing = true;
             isRecharging = true;
             cameraFollow.InitiateCatchup();
