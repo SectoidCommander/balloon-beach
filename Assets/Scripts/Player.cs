@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
 
     private Rigidbody rigidBody = null;
 
+    public bool doubleTapping = true;
+    public int doubleTapFrameCount = 0;
+
     public CameraFollow cameraFollow;
 
     // Start is called before the first frame update
@@ -53,7 +56,6 @@ public class Player : MonoBehaviour
         cameraFollow.speed = playerSpeed;
     }
 
-<<<<<<< HEAD
     private Rect windowRect = new Rect(20, 20, 500, 100);
     private string debugMessage = "";
 
@@ -78,16 +80,16 @@ public class Player : MonoBehaviour
     {
 
         int touchCount = Input.touchCount;
-        
+
         string touchMessage = "";
         int tapCount = 0;
 
-        if(touchCount > 0)
+        if (touchCount > 0)
         {
             for (int x = 0; x < touchCount; x++)
             {
                 tapCount = Input.GetTouch(x).tapCount;
-                touchMessage = touchMessage + "Touch (" + x + "): " + tapCount ;
+                touchMessage = touchMessage + "Touch (" + x + "): " + tapCount;
                 if (Input.GetTouch(x).tapCount >= 2)
                 {
                     doubleTapping = true;
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
                     touchMessage = touchMessage + " DOUBLE FRAMECOUNT: " + doubleTapFrameCount;
                 }
                 touchMessage = touchMessage + "\n";
-            }   
+            }
         }
         else
         {
@@ -106,14 +108,9 @@ public class Player : MonoBehaviour
         string speedMessage = "Player Speed: " + this.playerSpeed + "\n";
         string originalSpeedMessage = "Original Speed: " + this.originalPlayerSpeed + "\n";
         DebugMessage(speedMessage + originalSpeedMessage + touchMessage);
-=======
-    // Update is called once per frame
-    void Update()
-    {
-        
->>>>>>> parent of f82ff5e... Fixed tap spam
+        // Update is called once per frame
 
-        if ( (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !isRecharging)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !isRecharging)
         {
             isSmashing = true;
             isRecharging = true;
@@ -125,19 +122,20 @@ public class Player : MonoBehaviour
 
         if (isRecharging)
         {
-            if(smashRecharge >= smashRechargeTimelimit)
+            if (smashRecharge >= smashRechargeTimelimit)
             {
                 smashRecharge = 0.0f;
                 isRecharging = false;
             }
-            else {
+            else
+            {
                 smashRecharge += Time.deltaTime;
             }
         }
 
         if (isSmashing)
         {
-            if(smashTimer <= smashTimeLimit)
+            if (smashTimer <= smashTimeLimit)
             {
                 smashTimer += Time.deltaTime;
                 meshRenderer.materials = smashMaterials;
@@ -227,7 +225,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "scoreup")
         {
@@ -256,7 +254,8 @@ public class Player : MonoBehaviour
             }
         }
     }
-     
+
+
     public void SetFrozen(bool isFrozen)
     {
         this.isFrozen = isFrozen;
