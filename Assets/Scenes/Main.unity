@@ -2475,6 +2475,36 @@ Transform:
   m_Father: {fileID: 1861321518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1985612575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2144735804}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985612576}
+  m_Layer: 0
+  m_Name: Cube (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1985612576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2144735804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985612575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2028925480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2624,7 +2654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 2121118628}
-  playerSpeed: 0
+  playerSpeed: 4
   rotationFactor: 3.5
   touchSpeed: 10
   teleportSideMovement: 0
@@ -2637,13 +2667,15 @@ MonoBehaviour:
   canMoveHorizontal: 0
   canMoveVertical: 0
   isSmashing: 0
-  smashTimeLimit: 0.2
+  smashTimeLimit: 0.41
   smashMaterials:
   - {fileID: 2100000, guid: f36c3dc3f17cc054488e77f6d016152c, type: 2}
   - {fileID: 2100000, guid: 3bf4ee70eecb21044b935e7a26f0f9f0, type: 2}
   originalMaterials: []
   smashScaling: 1.3
-  smashSpeedFactor: 2
+  smashSpeedFactor: 1.2
+  doubleTapping: 1
+  doubleTapFrameCount: 0
   cameraFollow: {fileID: 534669906}
 --- !u!114 &2051454085
 MonoBehaviour:
@@ -2674,7 +2706,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9f2745c437f39e246a4e114c951baab6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c5c6eb797ec24eb489b19601aacf6eee, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2840,7 +2872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2121118631
 MonoBehaviour:

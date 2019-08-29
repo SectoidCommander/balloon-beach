@@ -54,7 +54,7 @@ public class Score : MonoBehaviour
     public void ScoreUp(int scoreAmount)
     {
         score += scoreAmount;
-        if (score != 0 && (score % 2) == 0)
+        if (score != 0 && (score % 10) == 0)
         {
             this.GetComponent<Player>().SpeedUp(speedUpAmount);
             speedUpUI.gameObject.SetActive(false);

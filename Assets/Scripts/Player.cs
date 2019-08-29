@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     private Rect windowRect = new Rect(20, 20, 500, 100);
     private string debugMessage = "";
 
+    /*
     void OnGUI()
     {
         windowRect = GUI.Window(0, windowRect, WindowFunction, "My Window");
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
     {
         GUI.skin.label.fontSize = 25;
         GUI.Label(new Rect(25, 25, 500, 100), debugMessage);
-    }
+    }*/
     
     void DebugMessage(string message)
     {
@@ -107,10 +108,10 @@ public class Player : MonoBehaviour
         }
         string speedMessage = "Player Speed: " + this.playerSpeed + "\n";
         string originalSpeedMessage = "Original Speed: " + this.originalPlayerSpeed + "\n";
-        DebugMessage(speedMessage + originalSpeedMessage + touchMessage);
+        //DebugMessage(speedMessage + originalSpeedMessage + touchMessage);
         // Update is called once per frame
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !isSmashing && !isRecharging)
+        if ((Input.GetKeyDown(KeyCode.Space) || doubleTapping) && !isSmashing && !isRecharging)
         {
             isSmashing = true;
             isRecharging = true;
